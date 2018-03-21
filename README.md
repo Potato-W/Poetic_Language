@@ -10,3 +10,5 @@ skills:
  1. jieba is a tool for word segmentation. 
  2. wordcloud to visualize the result.
  
+It's first but a good attempt for me. If I want to do simple project I can finish now, because maybe it's enough; but if more challange I want, I must try more difficult thing.
+ 
