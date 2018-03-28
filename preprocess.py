@@ -9,7 +9,6 @@ dirPath = "./poem/"
 # process one poem
 def ProcessOne(filePath):
     outfile = filePath.replace("json", "txt")
-    #outfile = outfile[:-4] + ".txt"#TODO
     with open(filePath) as p:
         poems = json.load(p)
         for poetic in poems:
@@ -31,7 +30,7 @@ def ProcessList(dirPath):
         poemPath = dirPath + "json/" + poem
         ProcessOne(poemPath)
 
-# a whole file may be convenient for process
+# a whole file may be convenient for process TODO
 # def Merge(dirPath):
 
 if __name__ == '__main__':
