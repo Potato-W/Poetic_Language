@@ -4,8 +4,6 @@ import os
 import json
 import re
 
-dirPath = "./poem/"
-
 # process one poem
 def ProcessOne(filePath):
     outfile = filePath.replace("json", "txt")
@@ -21,7 +19,7 @@ def ProcessOne(filePath):
             poem = re.sub("，|。|？|（|）|【|】|{|}|《|》|-|“|”|！|：|□|〖|〗|[0-9]|[|]","",poem)
             with open(outfile, 'a') as f:
                 f.write(poem)
-                f.write('\n')
+                f.write("\n")
 
 # list folder
 def ProcessList(dirPath):
@@ -30,8 +28,21 @@ def ProcessList(dirPath):
         poemPath = dirPath + "json/" + poem
         ProcessOne(poemPath)
 
-# a whole file may be convenient for process TODO
-# def Merge(dirPath):
+# a whole file may be convenient for process
+def Merge(dirPath):
+    poems = os.listdir(dirPath + "txt")
+    outfile = dirPath + "allpoems.txt"
+    allpoems = open(outfile, "w")
+    for poem in poems:
+        # print poem
+        poemPath = dirPath + "txt/" +poem
+        with open(poemPath, "r") as f:
+            for line in f:
+                allpoems.writelines(line)
+            allpoems.write("\n")
+    allpoems.close()
 
 if __name__ == '__main__':
-    ProcessList(dirPath)
+    poemDirPath = "./poem/"
+    #ProcessList(poemDirPath)
+    Merge(poemDirPath)
