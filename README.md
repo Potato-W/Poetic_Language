@@ -23,3 +23,4 @@ There is my strategy is as follows:
  1. first, participle with jieba to have most words.
  2. second, using informationentropy to get unregistered words, which are more common in Tang Poem, rather than modern Chinese.
  
+About these two methods, I will do a detailed explanation in Wiki-Participle
