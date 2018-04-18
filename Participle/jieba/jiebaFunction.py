@@ -35,15 +35,9 @@ class jieba:
         #print type(resnum)
         word = dict(resnum)
         #print "{} items".format(len(word)) 402663
-        word = json.dumps(word)
-        with open(outputFile, 'w') as o:
-            o.write(word)
-        return word
-
-    def PoemSort(self, outputFile):
-        word = json.load(outputFile)
         count = sorted(word.items(),key=lambda item:item[1],reverse=True)
-        # count is list
+        with open(outputFile, 'w') as o:
+            o.write(count)
         return count
 
     #TODO prefer to write items as utf-8 and in order
@@ -52,10 +46,10 @@ class jieba:
 if __name__ == '__main__':
     jieba = jieba()
     poem = "/Users/wcswang/Desktop/GraPro/Poetic_Language/poem/allpoems.txt"
-    poemWord = "/Users/wcswang/Desktop/GraPro/Poetic_Language/poem/output.json"
+    poemWord = "/Users/wcswang/Desktop/GraPro/Poetic_Language/poem/output.txt"
     count = jieba.PoemWord(poem, poemWord)
 
     print type(count)
 
-    # for i in count:
-    #     print "word: {}, times: {}".format(i[0].encode("utf-8"),i[1])
+    for i in count:
+        print "word: {}, times: {}".format(i[0].encode("utf-8"),i[1])
