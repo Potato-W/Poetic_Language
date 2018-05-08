@@ -21,6 +21,8 @@ Word segmentation is the foundation of NLP, whether later it is to do emotional 
 Modern Chinese word segmentation is a huge challange, not to motion Middle Chinese. The meaning of a word(字) forming a phrase （词）maybe different from that of a word. 
 There is my strategy is as follows:
  1. first, participle with jieba to have most words.
- 2. second, using informationentropy to get unregistered words, which are more common in Tang Poem, rather than modern Chinese.
+ 2. second, using branch entropy to get unregistered words, which are more common in Tang Poem, rather than modern Chinese.
  
-About these two methods, I will do a detailed explanation in Wiki-Participle
+About these two methods, I will do a detailed explanation in Wiki-Participle.
+ 
+It's really cooooool, I get single word mostly with method1, which are also common in modern Chinese. However, some meaningful phrases, including need to imagine or have historical culture found with method2. So, now, I have a rich thesaurus.
