@@ -13,24 +13,29 @@
 
 .right{
   width: 50%;
-  height: 200px;
+  height: 300px;
   float: right;
 }
 
-#poem{
+ #poem{
   position: absolute;
   top:0;
   bottom:0;
-  left:0;
-  right:0;
+  right:10%;
   margin:auto;
-  width:900px;
-  height:200px;
+  width:50%;
+  height:500px;
   -webkit-writing-mode: vertical-rl;
   writing-mode: vertical-rl;
   padding-top:40px;
   font-size:30px;
 }
+
+#poem #poem_author{
+  position: relative;
+  top: 30%;
+}
+
 
 .but{
   font-size: 13px;

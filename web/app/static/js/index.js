@@ -13,6 +13,17 @@ $(function(){
           poem_para = data[2]
           document.getElementById("poem_title").innerText = poem_title
           document.getElementById("poem_author").innerText = poem_author
+          // clear all poem_para
+          if(document.getElementById("poem_para")){
+            parent = document.getElementById("poem")
+            son = document.getElementById("poem_para");
+            while(son){
+              parent.removeChild(son);
+              son = document.getElementById("poem_para");
+              console.log("delete")
+            }
+          }
+
           var length = poem_para.length
           console.log(length)
           for(var i=0;i<length;i++){
