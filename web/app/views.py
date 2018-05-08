@@ -35,3 +35,9 @@ def poem():
     poem_item = randomPoem()
     print "poem_item: {}".format(poem_item)
     return json.jsonify({"poem":poem_item})
+
+# @app.route("/word", methods=['GET','POST'])
+#
+# @app.route("/longtext", methods=['GET','POST'])
+#
+# @app.route("/type", methods=['GET','POST'])
