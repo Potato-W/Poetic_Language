@@ -1,20 +1,23 @@
-from flask import Flask, render_template,url_for,request,jsonify
+from flask import Flask, render_template,url_for,request
+from flask import jsonify,json
 import os
 import random
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
 
 @app.route("/", methods=['GET', 'POST'])
 def index():
     css = url_for("static", filename="css")
     img = url_for("static",filename="img")
-    return render_template("index.html", css=css, img=img)
+    js = url_for("static", filename="js")
+    return render_template("index.html", css=css, img=img, js=js)
 
 def randomPoem():
     poem_file = "/Users/wcswang/Desktop/GraPro/Poetic_Language/poem/json"
     files = os.listdir(poem_file)
-    random.shuffle(files)
-    new_file = poem_file + "/" + files[0]
+    random_num = random.randint(0,len(files)-1)
+    new_file = poem_file + "/" + files[random_num]
     with open(new_file, 'r') as f:
         new_file = json.load(f)
         length = len(new_file)
@@ -27,7 +30,8 @@ def randomPoem():
         #print item_num, item_title, item_author, item_paragraphs
 
 
-@app.route("/random", methods=['GET', 'POST'])
-def random():
-    poem = randomPoem()
-    return json.jsonify({"poem":poem})
+@app.route("/poem", methods=['GET', 'POST'])
+def poem():
+    poem_item = randomPoem()
+    print "poem_item: {}".format(poem_item)
+    return json.jsonify({"poem":poem_item})
