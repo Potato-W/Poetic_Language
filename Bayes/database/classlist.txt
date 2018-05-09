@@ -1,0 +1,8 @@
+C00001 田园 default_1A24A1.aspx
+C00002 边塞 default_1A25A1.aspx
+C00003 怀古 default_1A59A1.aspx
+C00004 离别 default_1A29A1.aspx
+C00005 爱情 default_1A33A1.aspx
+C00006 思念 default_1A32A1.aspx
+C00007 抒情 default_1A27A1.aspx
+C00008 哲理 default_1A35A1.aspx
