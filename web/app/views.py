@@ -35,6 +35,8 @@ def randomPoem():
         #print item_num, item_title, item_author, item_paragraphs
 
 poem_item = []
+keywords = []
+poem_sentence = ""
 @app.route("/poem", methods=['GET', 'POST'])
 def poem():
     global poem_item
@@ -54,6 +56,7 @@ def word():
     TFIDF = TFIDFunction.TFIDF(idffile)
     global poem_item
     poems = poem_item[2]
+    global poem_sentence
     poem_sentence = ""
     for item in poems:
         poem_sentence += item
@@ -61,10 +64,32 @@ def word():
     print "before:{}".format(poem_sentence)
     poem_sentence = re.sub("，|。|？|（|）|【|】|{|}|《|》|-|“|”|！|：|□|〖|〗|[0-9]|[|]","",poem_sentence)
     print "after:{}".format(poem_sentence)
+    global keywords
     keywords = TFIDF.extract_keywords(poem_sentence, 15)
     for keyword in keywords:
+        #print type(keyword)
         print keyword.encode("utf-8")
+        #print type(keyword.encode("utf-8"))
     return json.jsonify({"keywords":keywords})
-# @app.route("/longtext", methods=['GET','POST'])
-#
+
+@app.route("/longtext", methods=['GET','POST'])
+def longtext():
+    dr_path = "/Users/wcswang/Desktop/GraPro/Poetic_Language/DR"
+    print "[IMPORT DR FROM] {}".format(dr_path)
+    add_path(dr_path)
+    import toVecFunction
+    model_path = "/Users/wcswang/Desktop/GraPro/Poetic_Language/DR/word_vectors.model"
+    Word2Vec = toVecFunction.toVec()
+    global keywords
+    print keywords
+    new_keywords = []
+    for keyword in keywords:
+        # print type(keyword)
+        # print keyword.encode("utf-8")
+        # print type(keyword.encode("utf-8"))
+        new_keywords.append(keyword.encode("utf-8"))
+    model = Word2Vec.generateModel(model_path)
+    results = Word2Vec.generateLongtext(model, new_keywords)
+    return json.jsonify({"longtext":results,"poem":poem_sentence})
+
 # @app.route("/type", methods=['GET','POST'])

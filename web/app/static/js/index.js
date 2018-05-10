@@ -51,7 +51,7 @@ $(function(){
 					var result = " ";
 					for(var i=0;i<keywords.length;i++){
 						keyword = keywords[i];
-						console.log(keyword);
+						//console.log(keyword);
 						result = result + keyword + " ";
 
 					}
@@ -61,3 +61,31 @@ $(function(){
 			});
 		});
 	})
+	$(function(){
+		$("#but-text").click(function(){
+	    $.ajax({
+	        url: "/longtext",
+	        data: {},
+	        dataType: 'json',
+	        success: function(data) {
+						console.log(data);
+						longtext = data["longtext"];
+						poem = data["poem"];
+						poem_new = poem;
+						start = 0;
+						for(var text in longtext){
+							console.log(text);
+							insert_index = poem_new.indexOf(text) + text.length;
+							console.log(insert_index);
+							end = poem_new.length;
+							poem_tmp_1 = poem_new.substring(start, insert_index);
+							poem_tmp_2 = poem_new.substring(insert_index, end);
+							insert_str = longtext[text];
+							poem_new = poem_tmp_1 +''+ insert_str + poem_tmp_2;
+						}
+						console.log(poem_new);
+					  document.getElementById("p-text").innerText = poem_new;
+					}
+				});
+			});
+		})
