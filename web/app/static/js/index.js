@@ -47,7 +47,15 @@ $(function(){
         dataType: 'json',
         success: function(data) {
 					console.log(data);
-					document.getElementById("p-keyword").innerText = data;
+					keywords = data["keywords"];
+					var result = " ";
+					for(var i=0;i<keywords.length;i++){
+						keyword = keywords[i];
+						console.log(keyword);
+						result = result + keyword + " ";
+
+					}
+					document.getElementById("p-keyword").innerText = result;
 
 				}
 			});

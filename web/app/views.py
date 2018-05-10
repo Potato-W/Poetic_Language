@@ -61,7 +61,7 @@ def word():
     print "before:{}".format(poem_sentence)
     poem_sentence = re.sub("，|。|？|（|）|【|】|{|}|《|》|-|“|”|！|：|□|〖|〗|[0-9]|[|]","",poem_sentence)
     print "after:{}".format(poem_sentence)
-    keywords = TFIDF.extract_keywords(poem_sentence, 10)
+    keywords = TFIDF.extract_keywords(poem_sentence, 15)
     for keyword in keywords:
         print keyword.encode("utf-8")
     return json.jsonify({"keywords":keywords})
