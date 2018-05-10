@@ -11,23 +11,26 @@ class jieba:
     def PoemSegment(self, poemFile):
         wordList = []
         wordCounter = Counter()
-        with open (poemFile, "r") as f:
-            for line in f.readlines():
-                #print line
-                seg = j.cut(line)
-                # seg = pseg.cut(line)
-                #print "/".join(seg)
-                # for word,flag in seg:
-                #     # print word
-                #     if flag == "an" or flag == "n" or flag == "vn":
-                #         wordList.append(word)
-                #         wordCounter[word] += 1
-                #print type(seg)
-                #print seg
-                for word in seg:
-                    wordList.append(word)
-                    wordCounter[word] += 1
-
+        # with open (poemFile, "r") as f:
+        #     for line in f.readlines():
+        #         #print line
+        #         seg = j.cut(line)
+        #         # seg = pseg.cut(line)
+        #         #print "/".join(seg)
+        #         # for word,flag in seg:
+        #         #     # print word
+        #         #     if flag == "an" or flag == "n" or flag == "vn":
+        #         #         wordList.append(word)
+        #         #         wordCounter[word] += 1
+        #         #print type(seg)
+        #         #print seg
+        #         for word in seg:
+        #             wordList.append(word)
+        #             wordCounter[word] += 1
+        seg = j.cut(poemFile)
+        for word in seg:
+            wordList.append(word)
+            wordCounter[word] += 1
         return wordList, wordCounter
 
     def PoemWord(self, poemFile, outputFile):

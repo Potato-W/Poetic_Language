@@ -39,3 +39,17 @@ $(function(){
 
   });
 })
+$(function(){
+	$("#but-keyword").click(function(){
+    $.ajax({
+        url: "/word",
+        data: {},
+        dataType: 'json',
+        success: function(data) {
+					console.log(data);
+					document.getElementById("p-keyword").innerText = data;
+
+				}
+			});
+		});
+	})

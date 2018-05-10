@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+#coding: utf-8
 
 import os
 import json
@@ -20,6 +20,12 @@ def ProcessOne(filePath):
             with open(outfile, 'a') as f:
                 f.write(poem)
                 f.write("\n")
+
+def Process(filePath):
+    with open(filePath,'r') as f:
+        poem = f.read()
+        poem = re.sub("，|。|？|（|）|【|】|{|}|《|》|-|“|”|！|：|□|〖|〗|[0-9]|[|]","",poem)
+        return poem
 
 # list folder
 def ProcessList(dirPath):

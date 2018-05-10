@@ -1,7 +1,12 @@
+#coding: utf-8
 from flask import Flask, render_template,url_for,request
 from flask import jsonify,json
-import os
+import os, sys
 import random
+import re
+def add_path(path):
+    if path not in sys.path:
+        sys.path.insert(0, path)
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
@@ -29,15 +34,37 @@ def randomPoem():
         return item
         #print item_num, item_title, item_author, item_paragraphs
 
-
+poem_item = []
 @app.route("/poem", methods=['GET', 'POST'])
 def poem():
+    global poem_item
     poem_item = randomPoem()
     print "poem_item: {}".format(poem_item)
     return json.jsonify({"poem":poem_item})
 
-# @app.route("/word", methods=['GET','POST'])
-#
+
+@app.route("/word", methods=['GET','POST'])
+def word():
+    #tfidf_path = os.path.join(pwd,'../../','TF-IDF/')
+    tfidf_path = "/Users/wcswang/Desktop/GraPro/Poetic_Language/TFIDF"
+    print "[IMPORT TF-IDF FROM] {}".format(tfidf_path)
+    add_path(tfidf_path)
+    import TFIDFunction
+    idffile = "/Users/wcswang/Desktop/GraPro/Poetic_Language/poem/idf.txt"
+    TFIDF = TFIDFunction.TFIDF(idffile)
+    global poem_item
+    poems = poem_item[2]
+    poem_sentence = ""
+    for item in poems:
+        poem_sentence += item
+    poem_sentence = poem_sentence.encode("utf-8")
+    print "before:{}".format(poem_sentence)
+    poem_sentence = re.sub("，|。|？|（|）|【|】|{|}|《|》|-|“|”|！|：|□|〖|〗|[0-9]|[|]","",poem_sentence)
+    print "after:{}".format(poem_sentence)
+    keywords = TFIDF.extract_keywords(poem_sentence, 10)
+    for keyword in keywords:
+        print keyword.encode("utf-8")
+    return json.jsonify({"keywords":keywords})
 # @app.route("/longtext", methods=['GET','POST'])
 #
 # @app.route("/type", methods=['GET','POST'])
