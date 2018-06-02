@@ -60,8 +60,9 @@ $(function(){
 				}
 			});
 		});
-	})
-	$(function(){
+})
+poem_new = '';
+$(function(){
 		$("#but-text").click(function(){
 	    $.ajax({
 	        url: "/longtext",
@@ -84,8 +85,48 @@ $(function(){
 							poem_new = poem_tmp_1 +''+ insert_str + poem_tmp_2;
 						}
 						console.log(poem_new);
+						$.ajax({
+								type:'POST',
+								data:JSON.stringify({"poem":poem_new}),
+								contentType: 'application/json; charset=UTF-8',
+								dataType:'json',
+								url:'/newpoem',
+								async: false,
+								success:function(data){
+									      alert("ok");
+						            // alert(JSON.stringify({"poem":poem_new}));
+						            // alert(data['poem'])
+						        }
+							});
 					  document.getElementById("p-text").innerText = poem_new;
 					}
 				});
+		});
+		// $.ajax({
+		// 		type:'POST',
+		// 		data:JSON.stringify({"poem":poem_new}),
+		// 		contentType: 'application/json; charset=UTF-8',
+		// 		dataType:'json',
+		// 		url:'/type',
+		// 		success:function(data){
+		// 			      alert("ok");
+		//             alert(JSON.stringify({"poem":poem_new}));
+		//             alert(data['poem'])
+		//         }
+		// 	});
+})
+$(function(){
+	$("#but-class").click(function(){
+    $.ajax({
+        url: "/type",
+        data: {},
+        dataType: 'json',
+        success: function(data) {
+					console.log(data);
+					result = data["type"];
+					document.getElementById("p-class").innerText = result;
+
+				}
 			});
-		})
+		});
+})

@@ -4,14 +4,33 @@ from flask import jsonify,json
 import os, sys
 import random
 import re
+from flask_httpauth import HTTPBasicAuth
 def add_path(path):
     if path not in sys.path:
         sys.path.insert(0, path)
 
 app = Flask(__name__)
 app.config['JSON_AS_ASCII'] = False
+auth = HTTPBasicAuth()
+
+users = {"username":"wcs",
+         "password":"password"}
+
+# @auth.get_password
+# def get_pw(username):
+#     if username in users:
+#         return users.get(username)
+#     return None
+
+@auth.verify_password
+def verify_password(username, password):
+    if users["username"] == username and users["password"] == password:
+        return True
+    else:
+        return False
 
 @app.route("/", methods=['GET', 'POST'])
+@auth.login_required
 def index():
     css = url_for("static", filename="css")
     img = url_for("static",filename="img")
@@ -37,6 +56,8 @@ def randomPoem():
 poem_item = []
 keywords = []
 poem_sentence = ""
+results = []
+new_poem = []
 @app.route("/poem", methods=['GET', 'POST'])
 def poem():
     global poem_item
@@ -89,7 +110,27 @@ def longtext():
         # print type(keyword.encode("utf-8"))
         new_keywords.append(keyword.encode("utf-8"))
     model = Word2Vec.generateModel(model_path)
+    global results
     results = Word2Vec.generateLongtext(model, new_keywords)
     return json.jsonify({"longtext":results,"poem":poem_sentence})
 
-# @app.route("/type", methods=['GET','POST'])
+@app.route("/newpoem", methods=['GET','POST'])
+def getNewpoem():
+    newpoem = request.get_json()
+    print newpoem
+    global new_poem
+    new_poem = newpoem["poem"].split(" ")
+    a = "ok"
+    return a
+
+@app.route("/type", methods=['GET','POST'])
+def classType():
+    bayes_path = "/Users/wcswang/Desktop/GraPro/Poetic_Language/Bayes"
+    print "[IMPORT DR FROM] {}".format(bayes_path)
+    add_path(bayes_path)
+    import BayesFunction
+    Bayes = BayesFunction.Bayes()
+    global new_poem
+    print new_poem
+    class_type = Bayes.classify(new_poem)
+    return json.jsonify({"type": class_type})

@@ -35,12 +35,12 @@ class TFIDF():
         else:
             return tags
 
-# idffile = "/Users/wcswang/Desktop/GraPro/Poetic_Language/poem/idf.txt"
-# document = "/Users/wcswang/Desktop/GraPro/Poetic_Language/Bayes/database/sample/C00001/76.txt"
-# topK = 10
-# tdidf = TFIDF(idffile)
-# sentence = preprocess.Process(document)
-# print sentence
-# tags = tdidf.extract_keywords(sentence)
-# for tag in tags:
-#     print tag.encode('utf-8')
+idffile = "/Users/wcswang/Desktop/GraPro/Poetic_Language/poem/idf.txt"
+document = "/Users/wcswang/Desktop/GraPro/Poetic_Language/Bayes/database/sample/C00001/76.txt"
+topK = 10
+tdidf = TFIDF(idffile)
+sentence = preprocess.Process(document)
+print sentence
+tags = tdidf.extract_keywords(sentence)
+for tag in tags:
+    print tag.encode('utf-8')

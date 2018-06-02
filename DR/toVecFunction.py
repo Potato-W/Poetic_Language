@@ -71,7 +71,7 @@ if __name__ == '__main__':
     Vec = toVec()
     #Word2Vec.generateFile(poem_file, words_file)
     model = Vec.generateModel(words_file)
-    word = ["失","江"]
+    word = ["随","幽映","衣裳","白云","流水","闲门","落花","青春","道","读书"]
     words= Vec.relativeWords(model,word)
     longtext = Vec.generateLongtext(model, word)
     for k,v in longtext.items():
