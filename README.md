@@ -32,3 +32,22 @@ There is my strategy is as follows:
 About these two methods, I will do a detailed explanation in Wiki-Participle.
  
 It's really cooooool, I get single word mostly with method1, which are also common in modern Chinese. However, some meaningful phrases, including need to imagine or have historical culture found with method2. So, now, I have a rich thesaurus.
+
+## Result
+
+
+
+## Postscript
+
+Time flies, I have graduated nearly 1 year. I saw the scene about the last period of my university as soon as I see this project. To be honest, it is not the best project in my undergraduate stage, but it contains too much memory. 
+
+I was thinking for a long time, 
+Should I select this topic as my project? 
+Should I use these called hi-tech(i.e. Machine Learing, NLP) try to understand the poem, especially Tang Poem?
+Should I expect the machine can real understand pepople?
+
+Actualy, I doubt whether I do the right thing. For now, I think it is not the right. I am not mean this project is not valuable. It does have value, we can use it to find the inheritance relationship between poets, we can better understand the evolation about Poem. No one can remember 100000+ poems, but the machine can, ALthough it can't understand it can get information. In this side, Sensible things also have a rational relationship.
+
+BUT tech can make our life better, in sooooo many feilds, not only in this rhetoric direction.
+
+
