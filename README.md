@@ -35,7 +35,7 @@ It's really cooooool, I get single word mostly with method1, which are also comm
 
 ## Result
 
-
+![image](https://github.com/changshunwang/Poetic_Language/blob/master/result.jpg)
 
 ## Postscript
 
